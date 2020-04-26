@@ -40,8 +40,8 @@ public class UserApi {
     return userService.createUser(user);
   }
 
-  @RequestMapping(value = "/ban/{email}", method = RequestMethod.PUT)
-  public GenericResponse banUserByEmail(@PathVariable String email) {
+  @RequestMapping(value = "/ban", method = RequestMethod.PUT)
+  public GenericResponse banUserByEmail(@RequestParam("email") String email) {
     return userService.banUserByEmail(email);
   }
 

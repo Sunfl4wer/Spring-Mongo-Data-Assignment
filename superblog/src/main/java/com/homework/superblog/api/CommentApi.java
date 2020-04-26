@@ -49,8 +49,8 @@ public class CommentApi {
     return commentService.getByArticleIdAndApproved(articleId, approved);
   }
 
-  @RequestMapping(value = "/{id}/approve", method = RequestMethod.POST)
-  public GenericResponse approveComment(@PathVariable ObjectId id) {
+  @RequestMapping(value = "/approve", method = RequestMethod.POST)
+  public GenericResponse approveComment(@RequestParam("id") ObjectId id) {
     return commentService.approveComment(id);
   }
 }
