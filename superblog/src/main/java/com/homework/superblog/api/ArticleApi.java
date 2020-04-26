@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,14 +24,14 @@ public class ArticleApi {
   @Autowired
   private ArticleService articleService;
 
-  @RequestMapping(value = "/page", method = RequestMethod.GET)
-  public GenericResponse getPageArticles(@RequestParam int page, @RequestParam int size ) {
+  @RequestMapping(value = "", method = RequestMethod.GET)
+  public GenericResponse getPageArticles(@RequestParam("size") int size, @RequestParam("page") int page) {
     return articleService.getPageArticles(page, size);
   }
 
-  @RequestMapping(value = "/getByTitleUsingKey", method = RequestMethod.GET)
-  public GenericResponse getArticlesByTitleUsingKey(@RequestParam String key) {
-    return articleService.getArticlesByTitleRegex(key);
+  @RequestMapping(value = "", method = RequestMethod.GET)
+  public GenericResponse getArticlesByTitleUsingKey(@RequestParam("title-key") String titleKey) {
+    return articleService.getArticlesByTitleRegex(titleKey);
   }
 
   @RequestMapping(value = "", method = RequestMethod.POST)
@@ -38,23 +39,23 @@ public class ArticleApi {
     return articleService.createArticle(article);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.PUT)
-  public GenericResponse updateArticle(@RequestParam("id") ObjectId id, @RequestBody Article article) {
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  public GenericResponse updateArticle(@PathVariable ObjectId id, @RequestBody Article article) {
     return articleService.updateArticle(id, article);
   }
 
-  @RequestMapping(value = "/updateCategories", method = RequestMethod.PUT)
-  public GenericResponse updateCategories(@RequestParam("id") ObjectId id, @RequestBody EnumSet<Category> categories) {
+  @RequestMapping(value = "/{id}/categories", method = RequestMethod.PUT)
+  public GenericResponse updateCategories(@PathVariable ObjectId id, @RequestBody EnumSet<Category> categories) {
     return articleService.updateCategories(id, categories);
   }
 
-  @RequestMapping(value = "/updateTags", method = RequestMethod.PUT)
-  public GenericResponse updateTags(@RequestParam("id") ObjectId id, @RequestBody List<String> tags) {
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  public GenericResponse updateTags(@PathVariable ObjectId id, @RequestBody List<String> tags) {
     return articleService.updateTags(id, tags);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.DELETE)
-  public GenericResponse deleteArticle(@RequestParam("id") ObjectId id) {
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+  public GenericResponse deleteArticle(@PathVariable ObjectId id) {
     return articleService.deleteArticle(id);
   }
 }

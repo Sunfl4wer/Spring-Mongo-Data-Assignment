@@ -2,6 +2,7 @@ package com.homework.superblog.api;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,32 +25,32 @@ public class CommentApi {
     return commentService.createComment(comment);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.DELETE)
-  public GenericResponse deleteComment(@RequestParam("id") ObjectId id) {
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+  public GenericResponse deleteComment(@PathVariable ObjectId id) {
     return commentService.deleteComment(id);
   }
 
-  @RequestMapping(value = "/getByArticleId", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET)
   public GenericResponse getByArticleId(@RequestParam("articleId") ObjectId articleId) {
     return commentService.getByArticleId(articleId);
   }
 
-  @RequestMapping(value = "/getPageByArticleIdAndApproved", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET)
   public GenericResponse getPageByArticleIdAndApproved(@RequestParam("articleId") ObjectId articleId,
                                                   @RequestParam("approved") boolean approved,
-                                                  @RequestParam("size") int page,
-                                                  @RequestParam("size") int size) {
+                                                  @RequestParam("size") int size,
+                                                  @RequestParam("page") int page) {
     return commentService.getPageByArticleIdAndApproved(articleId, approved, page, size);
   }
 
-  @RequestMapping(value = "/getByArticleIdAndApproved", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET)
   public GenericResponse getByArticleIdAndApproved(@RequestParam("articleId") ObjectId articleId,
                                                    @RequestParam("approved") boolean approved) {
     return commentService.getByArticleIdAndApproved(articleId, approved);
   }
 
-  @RequestMapping(value = "/approve", method = RequestMethod.POST)
-  public GenericResponse approveComment(@RequestParam("id") ObjectId id) {
+  @RequestMapping(value = "/{id}/approve", method = RequestMethod.POST)
+  public GenericResponse approveComment(@PathVariable ObjectId id) {
     return commentService.approveComment(id);
   }
 }

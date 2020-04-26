@@ -1,6 +1,7 @@
 package com.homework.superblog.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,13 +25,13 @@ public class UserApi {
     return userService.getAllUsers();
   }
 
-  @RequestMapping(value = "/findByEmail", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET)
   public GenericResponse getUserByEmail(@RequestParam("email") String email) {
     return userService.getUserByEmail(email);
   }
 
-  @RequestMapping(value = "/findByNameStartsWith", method = RequestMethod.GET)
-  public GenericResponse getUsersByNameStartsWith(@RequestParam("prefix") String prefix) {
+  @RequestMapping(value = "", method = RequestMethod.GET)
+  public GenericResponse getUsersByNameStartsWith(@RequestParam("name-starts-with") String prefix) {
     return userService.getUsersByNameStartsWith(prefix);
   }
 
@@ -39,13 +40,13 @@ public class UserApi {
     return userService.createUser(user);
   }
 
-  @RequestMapping(value = "/banByEmail", method = RequestMethod.POST)
-  public GenericResponse banUserByEmail(@RequestParam("email") String email) {
+  @RequestMapping(value = "/ban/{email}", method = RequestMethod.PUT)
+  public GenericResponse banUserByEmail(@PathVariable String email) {
     return userService.banUserByEmail(email);
   }
 
-  @RequestMapping(value = "/updateAuthorized", method = RequestMethod.PUT)
-  public GenericResponse updateAuthorized(@RequestParam("email") String email, @RequestBody Authorized updateAuthorized) {
+  @RequestMapping(value = "/{email}/authorized", method = RequestMethod.PUT)
+  public GenericResponse updateAuthorized(@PathVariable String email, @RequestBody Authorized updateAuthorized) {
     return userService.updateAuthorized(email, updateAuthorized);
   }
 }
