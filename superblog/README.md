@@ -100,5 +100,5 @@ Assume that we're building an API set for a blogging platform. The blogging plat
    - [x] [ApplicationTests.](src/test/java/com/homework/superblog/SuperblogApplicationTests.java)
    - [x] [Service tests. All the functions in service are tested.](src/test/java/com/homework/superblog/service)
 4. Define profiles e.g dev & qc
-   - [__develoment__ environment properties](src/main/resouces/application-dev.properties)
-   - [__test__ environment properties](src/main/resouces/application-test.properties)
+   - [__develoment__ environment properties](src/main/resources/application-dev.properties)
+   - [__test__ environment properties](src/main/resources/application-test.properties)
