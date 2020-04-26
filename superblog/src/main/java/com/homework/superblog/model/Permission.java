@@ -1,0 +1,13 @@
+package com.homework.superblog.model;
+
+public enum Permission {
+
+  CREATE_ARTICLE,
+  UPDATE_ARTICLE,
+  SET_CATEGORIES_ARTICLE,
+  SET_TAGS_ARTICLE,
+  DELETE_ARTICLE,
+  POST_COMMENT,
+  APPROVE_COMMENT,
+  DELETE_COMMENT;
+}
