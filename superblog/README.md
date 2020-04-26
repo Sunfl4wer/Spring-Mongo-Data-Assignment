@@ -35,7 +35,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
          `__"enabled" : [tells if the user is banned (false) or not (true) - type: boolean]`<br/>
        `}`
        
-    - Article model (see [Article.java]src/main/java/com/homework/superblog/model/Article.java))
+    - Article model (see [Article.java](src/main/java/com/homework/superblog/model/Article.java))
       - `{`<br/>
         `__"id" : [id of the article - type: ObjectId],`<br/>
         `__"title" : [name of the article - type: String],`<br/>
@@ -45,7 +45,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
         `__"tags" : [tags of the article - type: List<String>]`<br/>
         `}`
         
-    - Comment model (see [Comment.java]src/main/java/com/homework/superblog/model/Comment.java))
+    - Comment model (see [Comment.java](src/main/java/com/homework/superblog/model/Comment.java))
       - `{`<br/>
         `__"id" : [id of the comment - type: ObjectId],`<br/>
         `__"email" : [email of the comment - type: String],`<br/>
@@ -54,7 +54,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
         `__"approved" : [tells if the article is approved - type: boolean]`<br/>
         `}`
  2. Provide HTTP GET/POST/PUT/DELETE requests
-    - UserApi (see [UserApi.java]src/main/java/com/homework/superblog/api/UserApi.java))
+    - UserApi (see [UserApi.java](src/main/java/com/homework/superblog/api/UserApi.java))
       - Get all users
         - `GET https://localhost:9090/superblog/users`
       - Get users by email
