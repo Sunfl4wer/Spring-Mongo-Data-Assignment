@@ -7,7 +7,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
 * End user can post comment under each article
 * Super user can manage comments: approve, delete it
 
-# Expectation on the output
+## Expectation on the output
 * All related model entities must be defined with good relationship
 * All related APIs to satisfy above requirement must be implemented
 * All related unit tests must be implemented
@@ -60,20 +60,20 @@ Assume that we're building an API set for a blogging platform. The blogging plat
       - Get users by email
         - `GET https://localhost:9090/superblog/users/{email}`
       - Get users by name starts with
-        - `GET https://localhost:9090/superblog/users/name?start-with={key(case sensitive)}`
+        - `GET https://localhost:9090/superblog/users?name-start-with={String(case sensitive)}`
       - Create user
         - `POST https://localhost:9090/superblog/users + {JSON body with all the fields of type User}`
       - Ban user by email.
-        - `PUT https://localhost:9090/superblog/users/{email}/ban`
+        - `PUT https://localhost:9090/superblog/users/ban?email={String}`
       - Re-authorize a user
         - `PUT https://localhost:9090/superblog/users/{id}/authorized {JSON body with all the fields of type Authorized}`
       - Delete a user by email
         - `DELETE https://localhost:9090/users/{email}`
     - ArticleApi (see [ArticleApi.java](src/main/java/com/homework/superblog/api/ArticleApi.java))
       - Get article with pagination
-        - `GET https://localhost:9090/superblog/articles?size={size}&page={page}`
+        - `GET https://localhost:9090/superblog/articles?size={int}&page={int}`
       - Get articles by title keyword (case insensitive)
-        - `GET https://localhost:9090/superblog/articles/title?key={keywords of the title}`
+        - `GET https://localhost:9090/superblog/articles/title?key={String}`
       - Create article
         - `POST https://localhost:9090/superblog/articles + {JSON body with all the fields of type Article}`
       - Update article
@@ -92,7 +92,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
       - Get comments by article id and approved
         - `GET https://localhost:9090/superblog/comments?articleId={ObjectId}&approved={boolean}`
       - Approve comment
-        - `PUT https://localhost:9090/superblog/comments/{id}/approve`
+        - `PUT https://localhost:9090/superblog/comments/approve?id={ObjectId}`
       - Delete comment
         - `DELETE https://localhost:9090/superblog/comments/{id}`
 3. Unit tests
