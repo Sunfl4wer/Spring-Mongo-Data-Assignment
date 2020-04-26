@@ -1,4 +1,4 @@
-package com.homework.superblog.api;
+package com.homework.superblog.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,15 +19,16 @@ import com.homework.superblog.common.GenericResponse;
 import com.homework.superblog.model.Article;
 import com.homework.superblog.model.Category;
 import com.homework.superblog.repository.ArticleRepository;
+import com.homework.superblog.service.ArticleService;
 
 @SpringBootTest
-public class ArticleApiTest {
+public class ArticleServiceTest {
 
   @Autowired
   ArticleRepository articleRepository;
 
   @Autowired
-  ArticleApi articleApi;
+  ArticleService articleService;
 
   @BeforeEach
   public void init() {
@@ -51,8 +52,8 @@ public class ArticleApiTest {
   void getPageArticlesTest() {
     
     //given
-    GenericResponse responseS = articleApi.getPageArticles(0, 1);
-    GenericResponse responseN = articleApi.getPageArticles(5, 1);
+    GenericResponse responseS = articleService.getPageArticles(0, 1);
+    GenericResponse responseN = articleService.getPageArticles(5, 1);
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -78,7 +79,7 @@ public class ArticleApiTest {
                                            .content("Some text for the article")
                                            .categories(EnumSet.of(Category.Literature))
                                            .tags(new ArrayList<String>(Arrays.asList("test","article"))).build();
-    GenericResponse responseS = articleApi.createArticle(article);
+    GenericResponse responseS = articleService.createArticle(article);
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -104,8 +105,8 @@ public class ArticleApiTest {
                                            .categories(EnumSet.of(Category.Literature))
                                            .tags(new ArrayList<String>(Arrays.asList("test","article"))).build();
     articleRepository.save(article);
-    GenericResponse responseS = articleApi.deleteArticle(article.getId());
-    GenericResponse responseN = articleApi.deleteArticle(article.getId());
+    GenericResponse responseS = articleService.deleteArticle(article.getId());
+    GenericResponse responseN = articleService.deleteArticle(article.getId());
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -137,8 +138,8 @@ public class ArticleApiTest {
                                            .categories(EnumSet.of(Category.Literature))
                                            .tags(new ArrayList<String>(Arrays.asList("test","article"))).build();
 
-    GenericResponse responseS = articleApi.updateArticle(article.getId(), updateArticle);
-    GenericResponse responseN = articleApi.updateArticle(new ObjectId("5ea2cc2756708a1128983985"), updateArticle);
+    GenericResponse responseS = articleService.updateArticle(article.getId(), updateArticle);
+    GenericResponse responseN = articleService.updateArticle(new ObjectId("5ea2cc2756708a1128983985"), updateArticle);
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -168,8 +169,8 @@ public class ArticleApiTest {
     articleRepository.save(article);
     EnumSet<Category> updateCategories = EnumSet.of(Category.Literature,Category.Social);
 
-    GenericResponse responseS = articleApi.updateCategories(article.getId(), updateCategories);
-    GenericResponse responseN = articleApi.updateCategories(new ObjectId("5ea2cc2756708a1128983985"), updateCategories);
+    GenericResponse responseS = articleService.updateCategories(article.getId(), updateCategories);
+    GenericResponse responseN = articleService.updateCategories(new ObjectId("5ea2cc2756708a1128983985"), updateCategories);
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -198,8 +199,8 @@ public class ArticleApiTest {
                                            .tags(new ArrayList<String>(Arrays.asList("test","article"))).build();
     articleRepository.save(article);
     List<String> updateTags = new ArrayList<String>(Arrays.asList("update","test","article"));
-    GenericResponse responseS = articleApi.updateTags(article.getId(), updateTags);
-    GenericResponse responseN = articleApi.updateTags(new ObjectId("5ea2cc2756708a1128983985"), updateTags);
+    GenericResponse responseS = articleService.updateTags(article.getId(), updateTags);
+    GenericResponse responseN = articleService.updateTags(new ObjectId("5ea2cc2756708a1128983985"), updateTags);
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -217,13 +218,13 @@ public class ArticleApiTest {
     Assertions.assertEquals(articleRepository.findById(article.getId()).get().getTags(), updateTags);
   }
 
-  @DisplayName("getArticlesByTitleUsingKey test function")
+  @DisplayName("getArticlesByRegex test function")
   @Test
-  void getArticlesByTitleUsingKey() {
+  void getArticlesByRegexTest() {
     
     //given
-    GenericResponse responseS = articleApi.getArticlesByTitleUsingKey("first");
-    GenericResponse responseN = articleApi.getArticlesByTitleUsingKey("tre");
+    GenericResponse responseS = articleService.getArticlesByTitleRegex("first");
+    GenericResponse responseN = articleService.getArticlesByTitleRegex("tre");
 
     //when 
     int codeS = responseS.getErrorCode();

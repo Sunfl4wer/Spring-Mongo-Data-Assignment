@@ -98,7 +98,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
 3. Unit tests
    - [x] [Database test.](src/test/java/com/homework/superblog/repository/DatabaseTest.java)
    - [x] [ApplicationTests.](src/test/java/com/homework/superblog/SuperblogApplicationTests.java)
-   - [x] [Api tests. All the functions in API are tested.](src/test/java/com/homework/superblog/api)
+   - [x] [Service tests. All the functions in service are tested.](src/test/java/com/homework/superblog/service)
 4. Define profiles e.g dev & qc
    - [__develoment__ environment properties](src/main/resouces/application-dev.properties)
    - [__test__ environment properties](src/main/resouces/application-test.properties)

@@ -1,6 +1,4 @@
-package com.homework.superblog.api;
-
-
+package com.homework.superblog.service;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -25,15 +23,16 @@ import com.homework.superblog.model.Role;
 import com.homework.superblog.model.User;
 import com.homework.superblog.model.Permission;
 import com.homework.superblog.repository.UserRepository;
+import com.homework.superblog.service.UserService;
 
 @SpringBootTest
-public class UserApiTests {
+public class UserServiceTests {
 
   @Autowired
   UserRepository userRepository;
 
   @Autowired
-  UserApi userApi;
+  UserService userService;
 
   @BeforeEach
   public void init() {
@@ -69,9 +68,9 @@ public class UserApiTests {
   void getAllUsersTest() {
     
     //Given
-    GenericResponse responseSuccess = userApi.getAllUsers();
+    GenericResponse responseSuccess = userService.getAllUsers();
     userRepository.deleteAll();
-    GenericResponse responseNotFoundData = userApi.getAllUsers();
+    GenericResponse responseNotFoundData = userService.getAllUsers();
 
     //When
     int codeSuccess = responseSuccess.getErrorCode();
@@ -94,8 +93,8 @@ public class UserApiTests {
   @Test
   void getUserByEmailTest() {
     //given
-    GenericResponse responseSuccess = userApi.getUserByEmail("loveyouno@gmail.com");
-    GenericResponse responseNotFoundData = userApi.getUserByEmail("huanrose@gmail.com");
+    GenericResponse responseSuccess = userService.getUserByEmail("loveyouno@gmail.com");
+    GenericResponse responseNotFoundData = userService.getUserByEmail("huanrose@gmail.com");
 
     //when
     int codeSuccess = responseSuccess.getErrorCode();
@@ -127,8 +126,8 @@ public class UserApiTests {
   void getByNameStartsWith() {
     
     //given
-    GenericResponse responseS = userApi.getUsersByNameStartsWith("C");
-    GenericResponse responseNFD = userApi.getUsersByNameStartsWith("Lk");
+    GenericResponse responseS = userService.getUsersByNameStartsWith("C");
+    GenericResponse responseNFD = userService.getUsersByNameStartsWith("Lk");
     Object objectS = responseS.getData();
     Object objectNFD = responseNFD.getData();
 
@@ -164,8 +163,8 @@ public class UserApiTests {
                                       .enabled(true).build();
 
     //when
-    GenericResponse responseS = userApi.createUser(newUser);
-    GenericResponse responseE = userApi.createUser(newUser);
+    GenericResponse responseS = userService.createUser(newUser);
+    GenericResponse responseE = userService.createUser(newUser);
     Object objectS = responseS.getData();
     Object objectE = responseE.getData();
     int codeS = responseS.getErrorCode();
@@ -190,8 +189,8 @@ public class UserApiTests {
   @Test
   void banUserByEmailTest() {
     //given
-    GenericResponse responseS = userApi.banUserByEmail("loveyouno@gmail.com");
-    GenericResponse responseNFD = userApi.banUserByEmail("noone@yahoo.com");
+    GenericResponse responseS = userService.banUserByEmail("loveyouno@gmail.com");
+    GenericResponse responseNFD = userService.banUserByEmail("noone@yahoo.com");
 
     //when
     Object objectS = responseS.getData();
@@ -218,8 +217,8 @@ public class UserApiTests {
     
     //given
     Authorized updateAuthorized = new Authorized(EnumSet.of(Role.SUPER_ADMIN),EnumSet.of(Permission.CREATE_ARTICLE));
-    GenericResponse responseS = userApi.updateAuthorized("loveyoupheo@gmail.com", updateAuthorized);
-    GenericResponse responseN = userApi.updateAuthorized("lopheo@gmail.com", updateAuthorized);
+    GenericResponse responseS = userService.updateAuthorized("loveyoupheo@gmail.com", updateAuthorized);
+    GenericResponse responseN = userService.updateAuthorized("lopheo@gmail.com", updateAuthorized);
 
     //when
     Object objS = responseS.getData();

@@ -25,12 +25,12 @@ public class UserApi {
     return userService.getAllUsers();
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = "email")
   public GenericResponse getUserByEmail(@RequestParam("email") String email) {
     return userService.getUserByEmail(email);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = "name-starts-with")
   public GenericResponse getUsersByNameStartsWith(@RequestParam("name-starts-with") String prefix) {
     return userService.getUsersByNameStartsWith(prefix);
   }
@@ -40,7 +40,7 @@ public class UserApi {
     return userService.createUser(user);
   }
 
-  @RequestMapping(value = "/ban", method = RequestMethod.PUT)
+  @RequestMapping(value = "/ban", method = RequestMethod.PUT, params = "email")
   public GenericResponse banUserByEmail(@RequestParam("email") String email) {
     return userService.banUserByEmail(email);
   }

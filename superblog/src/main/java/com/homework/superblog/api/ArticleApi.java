@@ -24,12 +24,12 @@ public class ArticleApi {
   @Autowired
   private ArticleService articleService;
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = {"size", "page"})
   public GenericResponse getPageArticles(@RequestParam("size") int size, @RequestParam("page") int page) {
     return articleService.getPageArticles(page, size);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = "title-key")
   public GenericResponse getArticlesByTitleUsingKey(@RequestParam("title-key") String titleKey) {
     return articleService.getArticlesByTitleRegex(titleKey);
   }
@@ -49,7 +49,7 @@ public class ArticleApi {
     return articleService.updateCategories(id, categories);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  @RequestMapping(value = "/{id}/tags", method = RequestMethod.PUT)
   public GenericResponse updateTags(@PathVariable ObjectId id, @RequestBody List<String> tags) {
     return articleService.updateTags(id, tags);
   }

@@ -1,4 +1,4 @@
-package com.homework.superblog.api;
+package com.homework.superblog.service;
 
 import java.util.List;
 
@@ -15,15 +15,16 @@ import org.springframework.data.domain.Page;
 import com.homework.superblog.common.GenericResponse;
 import com.homework.superblog.model.Comment;
 import com.homework.superblog.repository.CommentRepository;
+import com.homework.superblog.service.CommentService;
 
 @SpringBootTest
-public class CommentApiTest {
+public class CommentServiceTest {
 
   @Autowired
   CommentRepository commentRepository;
 
   @Autowired
-  CommentApi commentApi;
+  CommentService commentService;
 
   @BeforeEach
   public void init() {
@@ -49,7 +50,7 @@ public class CommentApiTest {
                                             .email("email4@gmail.com").approved(false).build();
 
     //when
-    GenericResponse responseS = commentApi.createComment(comment);
+    GenericResponse responseS = commentService.createComment(comment);
     Object objS = responseS.getData();
     int codeS = responseS.getErrorCode();
 
@@ -73,8 +74,8 @@ public class CommentApiTest {
     //given
     Comment comment =  commentRepository.save(Comment.builder().content("Forth").articleId(new ObjectId("5ea2cc2756708a1128983986"))
                                             .email("email4@gmail.com").approved(false).build());
-    GenericResponse responseS = commentApi.deleteComment(comment.getId());
-    GenericResponse responseN = commentApi.deleteComment(comment.getId());
+    GenericResponse responseS = commentService.deleteComment(comment.getId());
+    GenericResponse responseN = commentService.deleteComment(comment.getId());
 
     //when 
     int codeS = responseS.getErrorCode();
@@ -96,8 +97,8 @@ public class CommentApiTest {
   void getByArticleIdTest() {
     
     //given
-    GenericResponse responseS = commentApi.getByArticleId(new ObjectId("5ea2cc2756708a1128983986"));
-    GenericResponse responseN = commentApi.getByArticleId(new ObjectId("5ea2cc2756708a1128983980"));
+    GenericResponse responseS = commentService.getByArticleId(new ObjectId("5ea2cc2756708a1128983986"));
+    GenericResponse responseN = commentService.getByArticleId(new ObjectId("5ea2cc2756708a1128983980"));
     
     //when
     Object objS = responseS.getData();
@@ -124,9 +125,9 @@ public class CommentApiTest {
   void getPageByArticleIdAndApprovedTest() {
     
     //given
-    GenericResponse responseS = commentApi.getPageByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983986"), 
+    GenericResponse responseS = commentService.getPageByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983986"), 
                                                                           false, 0, 2);
-    GenericResponse responseN = commentApi.getPageByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983985"), 
+    GenericResponse responseN = commentService.getPageByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983985"), 
                                                                           false, 0, 2);
     //when
     Object objS = responseS.getData();
@@ -152,9 +153,9 @@ public class CommentApiTest {
   void getByArticleIdAndApprovedTest() {
     
     //given
-    GenericResponse responseS = commentApi.getByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983986"), 
+    GenericResponse responseS = commentService.getByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983986"), 
                                                                           false);
-    GenericResponse responseN = commentApi.getByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983985"), 
+    GenericResponse responseN = commentService.getByArticleIdAndApproved(new ObjectId("5ea2cc2756708a1128983985"), 
                                                                           false);
     //when
     Object objS = responseS.getData();
@@ -182,8 +183,8 @@ public class CommentApiTest {
     //given
     Comment comment =  commentRepository.save(Comment.builder().content("Forth").articleId(new ObjectId("5ea2cc2756708a1128983986"))
                                             .email("email4@gmail.com").approved(false).build());
-    GenericResponse responseS = commentApi.approveComment(comment.getId());
-    GenericResponse responseN = commentApi.approveComment(new ObjectId("5ea2cc2756708a1128983985"));
+    GenericResponse responseS = commentService.approveComment(comment.getId());
+    GenericResponse responseN = commentService.approveComment(new ObjectId("5ea2cc2756708a1128983985"));
 
     //when
     Object objS = responseS.getData();

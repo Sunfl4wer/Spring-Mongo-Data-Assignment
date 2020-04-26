@@ -30,12 +30,12 @@ public class CommentApi {
     return commentService.deleteComment(id);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = "articleId")
   public GenericResponse getByArticleId(@RequestParam("articleId") ObjectId articleId) {
     return commentService.getByArticleId(articleId);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = {"articleId", "approved", "size", "page"})
   public GenericResponse getPageByArticleIdAndApproved(@RequestParam("articleId") ObjectId articleId,
                                                   @RequestParam("approved") boolean approved,
                                                   @RequestParam("size") int size,
@@ -43,13 +43,13 @@ public class CommentApi {
     return commentService.getPageByArticleIdAndApproved(articleId, approved, page, size);
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "", method = RequestMethod.GET, params = {"articleId", "approved"})
   public GenericResponse getByArticleIdAndApproved(@RequestParam("articleId") ObjectId articleId,
                                                    @RequestParam("approved") boolean approved) {
     return commentService.getByArticleIdAndApproved(articleId, approved);
   }
 
-  @RequestMapping(value = "/approve", method = RequestMethod.POST)
+  @RequestMapping(value = "/approve", method = RequestMethod.POST, params = "id")
   public GenericResponse approveComment(@RequestParam("id") ObjectId id) {
     return commentService.approveComment(id);
   }
