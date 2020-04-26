@@ -40,6 +40,17 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @LogExecutionStatus
+  public GenericResponse deleteUserByEmail(String email) {
+    User user = userRepository.findByEmail(email);
+    if(user == null) {
+      return new GenericResponse(ErrorCode.NOT_FOUND_DATA.getCode(), email);
+    }
+      userRepository.delete(user);
+      return new GenericResponse(ErrorCode.SUCCESS.getCode(), "User deleted.");
+  }
+
+  @Override
+  @LogExecutionStatus
   public GenericResponse getUserByEmail(String email) {
     User user = userRepository.findByEmail(email);
     if ( user != null) {

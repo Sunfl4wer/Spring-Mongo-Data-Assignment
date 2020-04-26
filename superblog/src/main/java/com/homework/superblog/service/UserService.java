@@ -8,6 +8,7 @@ public interface UserService {
 
   GenericResponse getAllUsers();
   GenericResponse createUser(User user);
+  GenericResponse deleteUserByEmail(String email);
   GenericResponse getUserByEmail(String email);
   GenericResponse banUserByEmail(String email);
   GenericResponse updateAuthorized(String email, Authorized authorized);

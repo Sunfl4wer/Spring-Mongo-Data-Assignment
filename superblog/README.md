@@ -60,7 +60,7 @@ Assume that we're building an API set for a blogging platform. The blogging plat
       - Get users by email
         - `GET https://localhost:9090/superblog/users/{email}`
       - Get users by name starts with
-        - `GET https://localhost:9090/superblog/users?name-start-with={String(case sensitive)}`
+        - `GET https://localhost:9090/superblog/users?name-starts-with={String(case sensitive)}`
       - Create user
         - `POST https://localhost:9090/superblog/users + {JSON body with all the fields of type User}`
       - Ban user by email.
@@ -73,11 +73,11 @@ Assume that we're building an API set for a blogging platform. The blogging plat
       - Get article with pagination
         - `GET https://localhost:9090/superblog/articles?size={int}&page={int}`
       - Get articles by title keyword (case insensitive)
-        - `GET https://localhost:9090/superblog/articles/title?key={String}`
+        - `GET https://localhost:9090/superblog/articles?title-key={String}`
       - Create article
         - `POST https://localhost:9090/superblog/articles + {JSON body with all the fields of type Article}`
       - Update article
-        - `PUT https://localhost:9090/superblog/articles + {JSON body with all the fields of type Article}`
+        - `PUT https://localhost:9090/superblog/articles/{id} + {JSON body with all the fields of type Article}`
       - Update categories
         - `PUT https://localhost:9090/superblog/articles/{id}/categories + {JSON body with all the fields of type EnumSet<Category>}`
       - Update tags

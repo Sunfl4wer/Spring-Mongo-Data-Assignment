@@ -25,9 +25,14 @@ public class UserApi {
     return userService.getAllUsers();
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET, params = "email")
-  public GenericResponse getUserByEmail(@RequestParam("email") String email) {
+  @RequestMapping(value = "/{email}", method = RequestMethod.GET)
+  public GenericResponse getUserByEmail(@PathVariable String email) {
     return userService.getUserByEmail(email);
+  }
+
+  @RequestMapping(value = "/{email}", method = RequestMethod.DELETE)
+  public GenericResponse deleteUserByEmail(@PathVariable String email) {
+    return userService.deleteUserByEmail(email);
   }
 
   @RequestMapping(value = "", method = RequestMethod.GET, params = "name-starts-with")

@@ -185,6 +185,32 @@ public class UserServiceTests {
     assertTrue(objectE instanceof String);
   }
 
+  @DisplayName("deleteUserByEmail test function")
+  @Test
+  void deleteUserByEmailTest() {
+    
+    //given
+    GenericResponse responseS = userService.deleteUserByEmail("loveyouno@gmail.com");
+    GenericResponse responseE = userService.deleteUserByEmail("loveyouno@gmail.com");
+
+    //when
+    Object objectS = responseS.getData();
+    Object objectE = responseE.getData();
+    int codeS = responseS.getErrorCode();
+    int codeE = responseE.getErrorCode();
+   
+    //then
+    if (objectS instanceof String) {
+      String str = (String) objectS;
+      assertNotNull(str);
+      assertEquals(str, "User deleted.");
+    }
+    assertEquals(codeS, 200);
+    assertEquals(codeE, 404);
+    assertTrue(objectE instanceof String);
+    assertEquals(objectE, "loveyouno@gmail.com");
+  }
+
   @DisplayName("banUserByEmail test function")
   @Test
   void banUserByEmailTest() {
