@@ -19,7 +19,6 @@ import com.homework.superblog.common.GenericResponse;
 import com.homework.superblog.model.Article;
 import com.homework.superblog.model.Category;
 import com.homework.superblog.repository.ArticleRepository;
-import com.homework.superblog.service.ArticleService;
 
 @SpringBootTest
 public class ArticleServiceTest {

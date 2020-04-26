@@ -15,7 +15,6 @@ import org.springframework.data.domain.Page;
 import com.homework.superblog.common.GenericResponse;
 import com.homework.superblog.model.Comment;
 import com.homework.superblog.repository.CommentRepository;
-import com.homework.superblog.service.CommentService;
 
 @SpringBootTest
 public class CommentServiceTest {

@@ -23,7 +23,6 @@ import com.homework.superblog.model.Role;
 import com.homework.superblog.model.User;
 import com.homework.superblog.model.Permission;
 import com.homework.superblog.repository.UserRepository;
-import com.homework.superblog.service.UserService;
 
 @SpringBootTest
 public class UserServiceTests {
